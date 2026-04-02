@@ -118,7 +118,7 @@ local-devops-lab/
 
 ## 🗺️ Roadmap
 
-- [ ] Add Ansible provisioning on Lima VMs
+- [x] Add Ansible provisioning on Lima VMs
 - [ ] GitHub Actions CI/CD pipeline
 - [ ] Prometheus + Grafana monitoring stack
 - [ ] Multi-environment support (dev / staging)
