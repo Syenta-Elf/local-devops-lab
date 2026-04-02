@@ -3,19 +3,20 @@
   hosts: lima_vms
   become: true
 
+  roles:
+    - nginx
   tasks:
-    - name: Update apt cache
+    - name: Install git
       apt:
-        update_cache: yes
-
-    - name: Install nginx
-      apt:
-        name: nginx
+        name: git
         state: present
 
-    - name: Start and enable nginx
-      service:
-        name: nginx
-        state: started
-        enabled: yes
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
 
+    - name: Copy using inline content
+      copy:
+        content: "This file configured with Ansible"
+        dest: /etc/motd
