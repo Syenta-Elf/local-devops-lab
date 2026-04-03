@@ -8,8 +8,12 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    env:
+      ANSIBLE_NODE1_PORT: ${{ secrets.ANSIBLE_NODE1_PORT }}
+      ANSIBLE_NODE2_PORT: ${{ secrets.ANSIBLE_NODE2_PORT }}
+      ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Run ansible
-        run: ansible-playbook -i ansible/inventory.ini ansible/playbook.yaml
+        run: /opt/homebrew/bin/ansible-playbook -i ansible/inventory.ini ansible/playbook.yaml
