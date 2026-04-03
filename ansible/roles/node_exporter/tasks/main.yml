@@ -1,0 +1,32 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for node_exporter
+
+- name: Download node_exporter
+  get_url:
+    url: https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-arm64.tar.gz
+    dest: /opt/node_exporter-{{ node_exporter_version }}.linux-arm64.tar.gz
+    mode: "0755"
+- name: Unarchive node_exporter
+  unarchive:
+    src: /opt/node_exporter-{{ node_exporter_version }}.linux-arm64.tar.gz
+    dest: /opt
+    remote_src: yes
+
+- name: Copy node_exporter to /usr/local/bin
+  copy:
+    src: /opt/node_exporter-{{ node_exporter_version }}.linux-arm64/node_exporter
+    dest: /usr/local/bin/node_exporter
+    remote_src: yes
+    mode: "0755"
+
+- name: Copy node_exporter.service to /etc/systemd/system/node_exporter.service
+  template:
+    src: node_exporter.service.j2
+    dest: /etc/systemd/system/node_exporter.service
+
+- name: Start and enable node_exporter
+  service:
+    name: node_exporter.service
+    state: started
+    enabled: yes
