@@ -1,0 +1,15 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run ansible
+        run: ansinle-playbook -i ansible/inventory.ini ansible/playbook.yaml
