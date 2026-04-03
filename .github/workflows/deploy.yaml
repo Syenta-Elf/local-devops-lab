@@ -12,4 +12,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Run ansible
-        run: ansinle-playbook -i ansible/inventory.ini ansible/playbook.yaml
+        run: ansible-playbook -i ansible/inventory.ini ansible/playbook.yaml
