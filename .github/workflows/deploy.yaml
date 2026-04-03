@@ -16,4 +16,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run ansible
-        run: /opt/homebrew/bin/ansible-playbook -i ansible/inventory.ini ansible/playbook.yaml
+        run: /opt/homebrew/bin/ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml
