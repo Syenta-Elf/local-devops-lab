@@ -127,7 +127,7 @@ local-devops-lab/
 
 - [x] Add Ansible provisioning on Lima VMs
 - [x] GitHub Actions CI/CD pipeline
-- [ ] Prometheus + Grafana monitoring stack
+- [x] Prometheus + Grafana monitoring stack
 - [ ] Multi-environment support (dev / staging)
 
 ---
