@@ -1,16 +1,18 @@
 all:
-  hosts:
-    ansible-node1:
-      ansible_host: 127.0.0.1
-      ansible_port: "{{ lookup('env', 'ANSIBLE_NODE1_PORT') }}"
-      ansible_user: "{{ lookup('env', 'ANSIBLE_USER') }}"
-      ansible_ssh_private_key_file: ~/.lima/_config/user
-      ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      ansible_python_interpreter: /usr/bin/python3.13
-    ansible-node2:
-      ansible_host: 127.0.0.1
-      ansible_port: "{{ lookup('env', 'ANSIBLE_NODE2_PORT') }}"
-      ansible_user: "{{ lookup('env', 'ANSIBLE_USER') }}"
-      ansible_ssh_private_key_file: ~/.lima/_config/user
-      ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-      ansible_python_interpreter: /usr/bin/python3.13
+  children:
+    lima_vms:
+      hosts:
+        ansible-node1:
+          ansible_host: 127.0.0.1
+          ansible_port: "{{ lookup('env', 'ANSIBLE_NODE1_PORT') }}"
+          ansible_user: "{{ lookup('env', 'ANSIBLE_USER') }}"
+          ansible_ssh_private_key_file: ~/.lima/_config/user
+          ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+          ansible_python_interpreter: /usr/bin/python3.13
+        ansible-node2:
+          ansible_host: 127.0.0.1
+          ansible_port: "{{ lookup('env', 'ANSIBLE_NODE2_PORT') }}"
+          ansible_user: "{{ lookup('env', 'ANSIBLE_USER') }}"
+          ansible_ssh_private_key_file: ~/.lima/_config/user
+          ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+          ansible_python_interpreter: /usr/bin/python3.13
